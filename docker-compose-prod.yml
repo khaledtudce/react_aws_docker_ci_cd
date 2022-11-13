@@ -4,11 +4,8 @@ services:
     build: 
       context: .
       dockerfile: Dockerfile.prod
+      args: 
+        - REACT_APP_NAME=khaled-prod
     ports:
       - "8080:80"
-    environment:
-      - REACT_APP_NAME=khaled-prod
-      - CHOKIDAR_USEPOLLING=true
-    #env_file:
-    #  - ./.env
   
