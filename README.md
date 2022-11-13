@@ -18,9 +18,13 @@
 
 ### docker ps (see running docker container)
 
+## Accessing inside container
+
 ### docker exec -it react-app bash (open the bash command promt of docker container "react-app")
 
 ### exit (exit from bash command promt of container "react-app")
+
+## Bind mount to Sync source code
 
 ### docker run -v ${pwd}\src:/app/src -d -p 3000:3000 --name react-app react-image (moves current working directory's (pwd for powershell's current directory) changes to container's src folder(/app/src). However at the localhost:3000, we cannot see the changes immediately)
 
@@ -30,12 +34,24 @@
 
 touch: cannot touch 'hello': Read-only file system
 
+## Docker .env variables
+
 ### docker run --env-file ./.env -v ${pwd}\src:/app/src -d -p 3000:3000 --name react-app react-image (how to provide environment variable into docker container)
 
 ### docker rm react-app -f (remove running react-app container with force)
+
+## Docker compose
 
 ### docker-compose up -d (after adding docker-compose.yml file which contains all the manual command we have done so far. This command will run docker-compose.yml file and will generate an image and create a network and deploy container using Dockerfile contents for that image)
 
 ### docker-compose up -d --build (it will rebuild the image and create a network and deploy container containing that image)
 
 ### docker-compose down (stop and remove the container)
+
+## Multi Stage build for dev and prod
+
+### docker build -f .\Dockerfile.dev . (if provided Dockerfile.dev, in that case we have to provide file info)
+
+### docker build -f Dockerfile.prod -t docker-image-prod . (creating image of prod version named docker-image-prod)
+
+### docker run --env-file ./.env -d -p 8080:80 --name react-app-prod docker-image-prod (creating container and deploying react-app-prod on port 8080)
