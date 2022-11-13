@@ -1,11 +1,14 @@
-version: '1'
+version: '3'
 services:
-  nginx-react:
-    image: reactapp:latest
-    container_name: myreactapp
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports: [80:80]
-    entrypoint: 
-      NODE_ENV: "production"
+  react-app:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes: 
+      - ./src:/app/src
+    #environment:
+    #  - REACT_APP_NAME=khaled
+    #  - CHOKIDAR_USEPOLLING=true
+    env_file:
+      - ./.env
+  

@@ -33,3 +33,9 @@ touch: cannot touch 'hello': Read-only file system
 ### docker run --env-file ./.env -v ${pwd}\src:/app/src -d -p 3000:3000 --name react-app react-image (how to provide environment variable into docker container)
 
 ### docker rm react-app -f (remove running react-app container with force)
+
+### docker-compose up -d (after adding docker-compose.yml file which contains all the manual command we have done so far. This command will run docker-compose.yml file and will generate an image and create a network and deploy container using Dockerfile contents for that image)
+
+### docker-compose up -d --build (it will rebuild the image and create a network and deploy container containing that image)
+
+### docker-compose down (stop and remove the container)
