@@ -60,4 +60,8 @@ touch: cannot touch 'hello': Read-only file system
 
 ### docker-compose -f docker-compose.yml -f docker-compose-dev.yml up -d --build (it deploys container using development .yml files (order maters, if docker-compose.yml has something same, from later file it will be overwritten) which point to Dockerfile.dev --build flag generate new image)
 
-### docker-compose -f docker-compose.yml -f docker-compose-prod.yml up -d --build
+### docker-compose -f docker-compose.yml -f docker-compose-prod.yml up -d --build (It will deploy the container of prod version of the project, --build flag generate new image)
+
+### docker build --target build -f Dockerfile.prod -t multi-stage-example . (--target 'build' name is the final stage from Dockerfile.prod file of target until where it will run)
+
+### docker build --target deploy -f Dockerfile.prod -t multi-stage-example .
