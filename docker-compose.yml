@@ -1,16 +1,11 @@
 version: '3'
 services:
   react-app:
+    #build will be overwriting in dev or prod case, so we can keep it here
     build: 
       context: .
       dockerfile: Dockerfile.dev
-    ports:
-      - "3000:3000"
-    volumes: 
-      - ./src:/app/src
-    #environment:
-    #  - REACT_APP_NAME=khaled
-    #  - CHOKIDAR_USEPOLLING=true
-    env_file:
-      - ./.env
+
+    #env_file:
+    #  - ./.env
   

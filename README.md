@@ -55,3 +55,9 @@ touch: cannot touch 'hello': Read-only file system
 ### docker build -f Dockerfile.prod -t docker-image-prod . (creating image of prod version named docker-image-prod)
 
 ### docker run --env-file ./.env -d -p 8080:80 --name react-app-prod docker-image-prod (creating container and deploying react-app-prod on port 8080)
+
+## docker-compose-dev.yml and docker-compose-prod.yml
+
+### docker-compose -f docker-compose.yml -f docker-compose-dev.yml up -d --build (it deploys container using development .yml files (order maters, if docker-compose.yml has something same, from later file it will be overwritten) which point to Dockerfile.dev --build flag generate new image)
+
+### docker-compose -f docker-compose.yml -f docker-compose-prod.yml up -d --build
