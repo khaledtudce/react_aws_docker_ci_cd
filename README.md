@@ -65,3 +65,47 @@ touch: cannot touch 'hello': Read-only file system
 ### docker build --target build -f Dockerfile.prod -t multi-stage-example . (--target 'build' name is the final stage from Dockerfile.prod file of target until where it will run)
 
 ### docker build --target deploy -f Dockerfile.prod -t multi-stage-example .
+
+## Basic commands
+# pwd (copy the path)
+# ps aus | grep -i apt (see running process)
+# sudo kill 1756
+# ps -aux (to see all running services)
+# sudo systemctl status nginx
+# sudo npm i -g pm2
+# cat run.sh (to see file contents)
+# sudo nano run.sh (to edit file)
+# sudo rm * (remove all files inside a folder)
+# sodo rm -r * (remove all folder and files)
+
+## Needed to install 18.x version of nodejs in ubuntu
+sudo apt-get remove nodejs npm
+curl -sL https://deb.nodesource.com/setup_18.x | sudo bash -
+sudo apt install -y nodejs
+sudo dpkg -i --force-overwrite /var/cache/apt/archives/nodejs_18.12.1-deb-1nodesource1_amd64.deb
+sudo apt -f install
+
+## Connect with githhub and AWS
+# sudo mkdir react_aws && cd react_aws
+# sudo curl -o actions-runner-linux-x64-2.299.1.tar.gz -L https://github.com/actions/runner/releases/download/v2.299.1/actions-runner-linux-x64-2.299.1.tar.gz (downloading this file)
+# sudo echo "147c14700c6cb997421b9a239c012197f11ea9854cd901ee88ead6fe73a72c74  actions-runner-linux-x64-2.299.1.tar.gz" | shasum -a 256 -c (to see if file is valid)
+# sudo tar xzf ./actions-runner-linux-x64-2.299.1.tar.gz (extracting zipped file)
+# sudo RUNNER_ALLOW_RUNASROOT="1" ./config.sh --url https://github.com/khaledtudce/react_aws_docker_ci_cd --token AMRF7CXAKXZD4YUXLQWRVDTDPENJ2 (using that flag config was possible)
+# sudo ./run.sh install
+# sudo ./run.sh start (service started but did not made any connection with githhub: problem)
+# sudo RUNNER_ALLOW_RUNASROOT="1" ./run.sh (using that flag running run.sh was possible and it connected githhub: this way worked)
+
+## Configure Nginx for Automatic Deploy
+# cd /etc/nginx
+# cd sites-available/
+# sudo nano default
+# root /frontend/_work/react_aws_docker_ci_cd/react_aws_docker_ci_cd/build; (now it will load file from _work-> build folder where new files will be generated after every build from pipeline)
+#  location /api/ {
+         proxy_pass  http://localhost:3000/;
+         proxy_set_header Host $host;
+         proxy_set_header X-Real-IP $remote_addr;
+         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+# sudo systemctl restart nginx
+
+
